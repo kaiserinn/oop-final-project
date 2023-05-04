@@ -1,4 +1,5 @@
 # Final Project for OOP Subject
+This repository is currently empty as I have not yet decided on a project for my Object-Oriented Programming (OOP) subject final project. 
 
 ## What is this repository for?
 This repository contains the final project for the Object-Oriented Programming (OOP) subject, created by Azhar, Raihan and Abellia. The project's name is yet to be determined, but it will be based on a research paper related to OOP. The project will be implemented using the Java programming language and follow the principles of the OOP paradigm.
