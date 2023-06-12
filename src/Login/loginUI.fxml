@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<StackPane fx:id="rootPane" prefWidth="600" prefHeight="500" xmlns:fx="http://javafx.com/fxml" fx:controller="Login.LoginController" stylesheets="@loginStyle.css">
+    <VBox alignment="CENTER" styleClass="vbox" maxWidth="300" maxHeight="300" StackPane.alignment="CENTER" spacing="10">
+
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+        
+        <Label text="USER LOGIN" styleClass="loginTitle" />
+        <TextField fx:id="usernameField" promptText="Username" />
+        <PasswordField fx:id="passwordField" promptText="Password" />
+
+        <Separator/>
+
+        <Button fx:id="loginButton" text="Login" maxWidth="1.7976931348623157E308" onAction="#login" />
+        <Button fx:id="registerButton" text="Register" maxWidth="1.7976931348623157E308"/>
+        
+    </VBox> 
+</StackPane>
