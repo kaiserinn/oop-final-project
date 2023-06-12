@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
 
-<StackPane fx:id="rootPane" prefWidth="600" prefHeight="500" xmlns:fx="http://javafx.com/fxml" fx:controller="Login.LoginController" stylesheets="@loginStyle.css">
+<StackPane fx:id="rootPane" prefWidth="600" prefHeight="500" xmlns:fx="http://javafx.com/fxml" fx:controller="login.LoginController" stylesheets="@loginStyle.css">
     <VBox alignment="CENTER" styleClass="vbox" maxWidth="300" maxHeight="300" StackPane.alignment="CENTER" spacing="10">
 
         <padding>

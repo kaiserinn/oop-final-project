@@ -1,4 +1,4 @@
-package Login;
+package login;
 
 import javafx.application.*;
 import javafx.stage.*;
@@ -39,6 +39,8 @@ public class LoginController {
             }
         } else {
             MessageBox.show("Invalid username or password", "Error");
+            usernameField.clear();
+            passwordField.clear();
         }
     }
 }
