@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utility.InputDialogController">
+   <padding>
+      <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+   </padding>
+   <children>
+      <Label fx:id="title" style="-fx-font: 24px Helvetica;" text="TITLE" />
+      <VBox>
+         <children>
+            <Label text="Nama Lapangan" />
+            <TextField fx:id="namaInput" promptText="Nama" />
+         </children>
+      </VBox>
+      <VBox>
+         <children>
+            <Label text="Harga Lapangan" />
+            <TextField fx:id="hargaInput" promptText="Harga" />
+         </children>
+      </VBox>
+      <VBox>
+         <children>
+            <Label text="Status Lapangan" />
+            <TextField fx:id="statusInput" promptText="Status" />
+         </children>
+      </VBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button prefWidth="80.0" text="Cancel" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button prefWidth="80.0" text="OK" onAction="#okButtonPressed" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
