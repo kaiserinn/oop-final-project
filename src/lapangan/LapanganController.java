@@ -64,7 +64,7 @@ public class LapanganController {
         System.out.println("Tambah Lapangan");
         inputDialog = new InputDialog();
         inputData = inputDialog.show();
-        System.out.println(inputData);
+        
         String nama = inputData[0];
         String harga = inputData[1];
         String status = inputData[2];

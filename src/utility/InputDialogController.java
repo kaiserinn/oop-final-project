@@ -25,8 +25,6 @@ public class InputDialogController {
         String harga = hargaInput.getText();
         String status = statusInput.getText();
 
-        System.out.println(nama);
-
         inputData[0] = nama;
         inputData[1] = harga;
         inputData[2] = status;
