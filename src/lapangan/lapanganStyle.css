@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,400;0,700;1,400&display=swap');
+
+.lapanganTitle {
+    -fx-font: 30px Helvetica;
+    -fx-text-fill: rgb(50, 144, 255);
+}
+
+.tableColumn {
+    -fx-font: 14px Helvetica;
+}
+
+.sidebarTitle {
+    -fx-font: 50px Helvetica;
+}
+
+.button {
+    -fx-font: 16px Helvetica;
+}
+
+.userLayout {
+    -fx-background-color: white;
+    -fx-font: 16px Helvetica;
+}
