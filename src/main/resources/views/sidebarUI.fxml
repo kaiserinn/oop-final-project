@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="rootPane" alignment="TOP_CENTER" minWidth="200.0" prefWidth="200.0" spacing="20.0" styleClass="mainContainer" stylesheets="@sidebarStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lapangan.SidebarController">
+<VBox fx:id="rootPane" alignment="TOP_CENTER" minWidth="200.0" prefWidth="200.0" spacing="20.0" styleClass="mainContainer" stylesheets="@../styles/sidebarStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controllers.SidebarController">
     <padding>
         <Insets bottom="20.0" top="20.0" />
     </padding>
@@ -22,26 +22,26 @@
         </VBox.margin>
     </Separator>
 
-    <Button alignment="TOP_LEFT" onAction="#toLapangan" prefWidth="1.7976931348623157E308" styleClass="button" text="Daftar Lapangan">
+    <Button alignment="TOP_LEFT" onAction="#toDaftarLapangan" prefWidth="Infinity" styleClass="button" text="Daftar Lapangan">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-    <Button alignment="TOP_LEFT" onAction="#toWow" prefWidth="1.7976931348623157E308" styleClass="button" text="Sewa Lapangan">
+    <Button alignment="TOP_LEFT" onAction="#toAddPage" prefWidth="Infinity" styleClass="button" text="Tambah">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-    <Button alignment="TOP_LEFT" prefWidth="1.7976931348623157E308" styleClass="button" text="Tambah Lapangan">
+    <Button alignment="TOP_LEFT" prefWidth="Infinity" styleClass="button" text="Edit Lapangan">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-    <Button alignment="TOP_LEFT" prefWidth="1.7976931348623157E308" styleClass="button" text="Edit Lapangan">
+    <Button alignment="TOP_LEFT" prefWidth="Infinity" styleClass="button" text="Sewa Lapangan">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
 
     <Region VBox.vgrow="ALWAYS" />
       <Separator />
-      <Button alignment="TOP_LEFT" onAction="#logout" prefWidth="1.7976931348623157E308" text="Sign Out">
+      <Button alignment="TOP_LEFT" onAction="#logout" prefWidth="Infinity" text="Sign Out">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

@@ -33,7 +33,7 @@ public class LoginController {
         if (username.equals("admin") && password.equals("admin")) {
             try {
                 loginState = true;
-                Parent root = FXMLLoader.load(getClass().getResource("../lapangan/lapanganUI.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("../../resources/views/lapanganUI.fxml"));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) rootPane.getScene().getWindow();
                 stage.setScene(scene);
