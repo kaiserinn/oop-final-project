@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<HBox styleClass="header" stylesheets="@headerStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lapangan.HeaderController">
+    <children>
+        <Region HBox.hgrow="ALWAYS" />
+        <Label styleClass="usernameLabel" text="Azhar Rizqullah" />
+    </children>
+</HBox>

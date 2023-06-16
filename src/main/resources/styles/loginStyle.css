@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,400;0,700;1,400&display=swap');
+
+* {
+    -fx-font-family: Poppins;   
+}
+
+.stackpane {
+    -fx-background-color: snow;
+}
+
+.vbox {
+    -fx-border-color: rgb(50, 144, 255) transparent transparent transparent; 
+    -fx-border-width: 5px 0px 0px 0px; 
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.2, 0, 0); 
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.loginTitle {
+    -fx-font: bold 32px Montserrat;
+    -fx-text-fill: rgb(50, 144, 255);
+}
+
+.textFields {
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+}
+
+.buttons {
+    -fx-font-size: 16px;
+}
+
+.loginButton {
+    -fx-background-color: rgb(50, 144, 255);
+    -fx-border-color: rgb(50, 144, 255);
+    -fx-text-fill: white;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+}
+
+.logoutButton {
+    -fx-background-color: white;
+    -fx-border-color: rgb(50, 144, 255);
+    -fx-text-fill: rgb(50, 144, 255);
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+}
