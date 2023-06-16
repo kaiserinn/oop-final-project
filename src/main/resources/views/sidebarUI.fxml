@@ -26,7 +26,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-    <Button alignment="TOP_LEFT" onAction="#toAddPage" prefWidth="Infinity" styleClass="button" text="Tambah">
+    <Button alignment="TOP_LEFT" onAction="#toAddPage" prefWidth="Infinity" styleClass="button" text="Tambah Lapangan">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

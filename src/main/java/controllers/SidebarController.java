@@ -25,7 +25,7 @@ public class SidebarController {
     }
 
     @FXML
-    private void toLapangan() {
+    private void toDaftarLapangan() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../../resources/views/lapanganUI.fxml"));
             Scene scene = new Scene(root);
@@ -37,7 +37,7 @@ public class SidebarController {
     }
 
     @FXML
-    private void toWow() {
+    private void toAddPage() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../../resources/views/addPageUI.fxml"));
             Scene scene = new Scene(root);
