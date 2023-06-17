@@ -39,7 +39,7 @@
       
                   <HBox spacing="10.0" VBox.vgrow="NEVER">
                      <children>
-                        <Button fx:id="tambahButton" onAction="#tambahLapangan" prefWidth="100" styleClass="button" text="Tambah" />
+                        <Button fx:id="tambahButton" onAction="#toAddPage" prefWidth="100" styleClass="button" text="Tambah" />
                         <Button fx:id="editButton" onAction="#editLapangan" prefWidth="100" styleClass="button" text="Edit" />
                         <Button fx:id="hapusButton" onAction="#deleteRowLapangan" prefWidth="100" styleClass="button" text="Hapus" />
                         <Region HBox.hgrow="ALWAYS" />

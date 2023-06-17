@@ -2,21 +2,22 @@ package main.java.controllers;
 
 import java.io.IOException;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import javafx.collections.*;
+import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import javafx.util.Callback;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import main.java.types.Lapangan;
 import utility.InputDialog;
 import utility.MessageBox;
 
 public class LapanganController {
 
+    @FXML
+    private Pane rootPane;
     @FXML
     private TableView<Lapangan> table;
     @FXML
@@ -32,6 +33,10 @@ public class LapanganController {
     private InputDialog inputDialog;
     private String[] inputData = new String[3];
     private TableViewSelectionModel<Lapangan> selectionModel;
+
+    public static String nama;
+    public static String harga;
+    public static String status;
     
     @FXML
     private void initialize() {
@@ -55,16 +60,24 @@ public class LapanganController {
         
         return data;
     }
-    
+
     @FXML
-    private void tambahLapangan() throws IOException {
-        System.out.println("Tambah Lapangan");
-        inputData = inputDialog.show("Tambah Lapangan");
+    private void toAddPage() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../../resources/views/addPageUI.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-        String nama = inputData[0];
-        String harga = inputData[1];
-        String status = inputData[2];
-
+    public void receiveData(String nama, String harga, String status) throws IOException {
+        tambahLapangan(nama, harga, status);
+    }
+    
+    public void tambahLapangan(String nama, String harga, String status) throws IOException {
         int numItems = table.getItems().size();
 
         if (nama.isEmpty() || harga.isEmpty() || status.isEmpty()) {
@@ -75,7 +88,7 @@ public class LapanganController {
     }
 
     @FXML
-    private void editLapangan() throws IOException {
+    public void editLapangan() throws IOException {
         selectionModel = table.getSelectionModel();
         ObservableList<Lapangan> items = table.getItems();
         int rowIndex = 0;
@@ -113,6 +126,10 @@ public class LapanganController {
         if (selectedLapangan != null) {
             data.remove(selectedLapangan);
         }
+    }
+
+    public String[] receiveData(String[] data) {
+        return data;
     }
 
     // private void addButtonToTable() {
