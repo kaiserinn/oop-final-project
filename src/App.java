@@ -3,9 +3,6 @@ import java.io.IOException;
 import javafx.application.*;
 import javafx.stage.*;
 import javafx.scene.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.collections.*;
 import javafx.fxml.FXMLLoader;
 
 public class App extends Application {
@@ -15,8 +12,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("login/loginUI.fxml"));
-        primaryStage.setTitle("Login Page");
+        Parent root = FXMLLoader.load(getClass().getResource("main/resources/views/loginUI.fxml"));
+        primaryStage.setTitle("Aplikasi Penyewaan Lapangan Futsal");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
