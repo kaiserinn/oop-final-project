@@ -2,35 +2,37 @@ package main.java.controllers;
 
 import java.io.IOException;
 
-import javafx.fxml.*;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class AddPageController {
+public class AddAkunPageController {
     @FXML
     private Pane rootPane;
     @FXML
-    private TextField namaInput;
+    private TextField usernameInput;
     @FXML
-    private TextField hargaInput;
+    private PasswordField passwordInput;
     @FXML
-    private TextField statusInput;
+    private TextField roleInput;
 
     private String buttonStatus;
     private int rowIndex;
 
     @FXML
     private void saveButtonClicked() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/lapanganUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/accountsUI.fxml"));
         Parent root = loader.load();
-        LapanganController lapanganController = loader.getController();
+        AccountsController accountsController = loader.getController();
         
-        String nama = namaInput.getText(); 
-        String harga = hargaInput.getText();
-        String status = statusInput.getText();
+        String username = usernameInput.getText(); 
+        String password = passwordInput.getText();
+        String role = roleInput.getText();
 
         try {
             Scene scene = new Scene(root);
@@ -41,12 +43,11 @@ public class AddPageController {
         }
 
         if (buttonStatus.equals("Tambah")) {
-            lapanganController.tambahLapangan(nama, harga, status);
-        } else {
-            System.out.println("edit");
-            lapanganController.editLapangan(nama, harga, status, rowIndex);
-        }
-        System.out.println("not working: "+ buttonStatus);
+            accountsController.tambahAkun(username, password, role);
+        } 
+        // else {
+        //     accountsController.editAkun(username, password, role, rowIndex);
+        // }
     }
 
     public void receiveStatus(String status) {

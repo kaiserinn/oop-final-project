@@ -3,15 +3,14 @@ package main.java.controllers;
 import java.io.IOException;
 
 import javafx.collections.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.java.types.Lapangan;
-import utility.InputDialog;
 import utility.MessageBox;
 
 public class LapanganController {
@@ -23,16 +22,11 @@ public class LapanganController {
     @FXML
     private TableColumn<Lapangan, Integer> idCol;
     @FXML
-    private TableColumn<Lapangan, String> namaCol;
+    private TableColumn<Lapangan, String> namaCol, hargaCol, statusCol;
     @FXML
-    private TableColumn<Lapangan, String> hargaCol;
-    @FXML
-    private TableColumn<Lapangan, String> statusCol;
+    private Button tambahButton, sewaButton;
 
     private ObservableList<Lapangan> data;
-    private InputDialog inputDialog;
-    private String[] inputData = new String[3];
-    private TableViewSelectionModel<Lapangan> selectionModel;
 
     public static String nama;
     public static String harga;
@@ -46,7 +40,6 @@ public class LapanganController {
         statusCol.setCellValueFactory(new PropertyValueFactory<Lapangan, String>("status"));
 
         table.setItems(loadData());
-        inputDialog = new InputDialog();
     }
 
     private ObservableList<Lapangan> loadData() {
@@ -62,19 +55,30 @@ public class LapanganController {
     }
 
     @FXML
-    private void toAddPage() {
+    private void toAddPage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/addPageUI.fxml"));
+        Parent root = loader.load();
+        AddPageController addPageController = loader.getController();
+        
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../../resources/views/addPageUI.fxml"));
-            Scene scene = new Scene(root);
             Stage stage = (Stage) rootPane.getScene().getWindow();
-            stage.setScene(scene);
+            stage.setScene(new Scene(root));
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+        
+        String buttonText = "";
+        if (event.getSource() instanceof Button) {
+            Button clickedButton = (Button) event.getSource();
+            buttonText = clickedButton.getText();
+            System.out.println("Button clicked: " + buttonText);
+        }
 
-    public void receiveData(String nama, String harga, String status) throws IOException {
-        tambahLapangan(nama, harga, status);
+        if (buttonText.equals("Tambah")) {
+            addPageController.receiveStatus(buttonText);
+        } else {
+            addPageController.receiveStatus(buttonText, table.getSelectionModel().getSelectedIndices().get(0));
+        }
     }
     
     public void tambahLapangan(String nama, String harga, String status) throws IOException {
@@ -88,25 +92,16 @@ public class LapanganController {
     }
 
     @FXML
-    public void editLapangan() throws IOException {
-        selectionModel = table.getSelectionModel();
+    public void editLapangan(String nama, String harga, String status, int index) throws IOException {
+        System.out.println("editLapangan");
         ObservableList<Lapangan> items = table.getItems();
-        int rowIndex = 0;
 
-        if (selectionModel.getSelectedIndices().size() > 0) {
-            rowIndex = selectionModel.getSelectedIndices().get(0);
-        } else {
+        if (index < 1) {
             return;
         }
 
         for (Lapangan lapangan : items) {
-            if (lapangan.getId() == rowIndex+1) {
-                inputData = inputDialog.show("Edit Lapangan");
-
-                String nama = inputData[0];
-                String harga = inputData[1];
-                String status = inputData[2];
-
+            if (lapangan.getId() == index+1) {
                 if (nama.isEmpty() || harga.isEmpty() || status.isEmpty()) {
                     MessageBox.show("Mohon isi semua field", "Error");
                 } else {
@@ -117,54 +112,17 @@ public class LapanganController {
                 }
             }
         }
+
+        for (Lapangan lapangan: items) {
+            System.out.println(lapangan.getId() + " " + lapangan.getNama() + " " + lapangan.getHarga() + " " + lapangan.getStatus());
+        }
     }
 
     public void deleteRowLapangan() {
-        selectionModel = table.getSelectionModel();
         Lapangan selectedLapangan = table.getSelectionModel().getSelectedItem();
 
         if (selectedLapangan != null) {
             data.remove(selectedLapangan);
         }
     }
-
-    public String[] receiveData(String[] data) {
-        return data;
-    }
-
-    // private void addButtonToTable() {
-    //     btnCol = new TableColumn("Button Column");
-
-    //     Callback<TableColumn<Lapangan, Void>, TableCell<Lapangan, Void>> cellFactory = new Callback<TableColumn<Lapangan, Void>, TableCell<Lapangan, Void>>() {
-    //         @Override
-    //         public TableCell<Lapangan, Void> call(final TableColumn<Lapangan, Void> param) {
-    //             final TableCell<Lapangan, Void> cell = new TableCell<Lapangan, Void>() {
-
-    //                 private final Button btn1 = new Button("Hapus");
-
-    //                 {
-    //                     btn1.setMinWidth(1.7976931348623157E308);
-    //                     btn1.setOnAction((ActionEvent event) -> {
-    //                         deleteRowLapangan();
-    //                     });
-    //                 }
-
-    //                 @Override
-    //                 public void updateItem(Void item, boolean empty) {
-    //                     super.updateItem(item, empty);
-    //                     if (empty) {
-    //                         setGraphic(null);
-    //                     } else {
-    //                         setGraphic(btn1);
-    //                     }
-    //                 }
-    //             };
-    //             return cell;
-    //         }
-    //     };
-    //     btnCol.setCellFactory(cellFactory);
-    //     table.getColumns().add(btnCol);
-    // }
-
-
 }

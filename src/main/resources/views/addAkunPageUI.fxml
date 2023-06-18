@@ -4,11 +4,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" style="-fx-background-color: snow;" stylesheets="@../styles/lapanganStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controllers.AddPageController">
+<HBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" style="-fx-background-color: snow;" stylesheets="@../styles/lapanganStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controllers.AddAkunPageController">
    <children>
 
       <fx:include source="sidebarUI.fxml" />
@@ -20,23 +21,23 @@
 
             <VBox spacing="10.0" styleClass="contentContainer" VBox.vgrow="ALWAYS">
                <children>
-                  <Label styleClass="lapanganTitle" text="Penyewaan Lapangan" />
+                  <Label styleClass="lapanganTitle" text="Akun Pengguna" />
                   <VBox>
                      <children>
-                        <Label style="-fx-font: 14px Helvetica" text="Nama Lapangan" />
-                        <TextField fx:id="namaInput" promptText="Nama" style="-fx-font: 16px Helvetica; -fx-padding: 10px" />
+                        <Label style="-fx-font: 14px Helvetica" text="Username" />
+                        <TextField fx:id="usernameInput" promptText="Input Username" style="-fx-font: 16px Helvetica; -fx-padding: 10px" />
                      </children>
                   </VBox>
                   <VBox>
                      <children>
-                        <Label style="-fx-font: 14px Helvetica" text="Harga Lapangan" />
-                        <TextField fx:id="hargaInput" promptText="Harga" style="-fx-font: 16px Helvetica; -fx-padding: 10px" />
+                        <Label style="-fx-font: 14px Helvetica" text="Password" />
+                        <PasswordField fx:id="passwordInput" promptText="Input Password" style="-fx-font: 16px Helvetica; -fx-padding: 10px" />
                      </children>
                   </VBox>
                   <VBox>
                      <children>
-                        <Label style="-fx-font: 14px Helvetica" text="Status Lapangan" />
-                        <TextField fx:id="statusInput" promptText="Status" style="-fx-font: 16px Helvetica; -fx-padding: 10px" />
+                        <Label style="-fx-font: 14px Helvetica" text="Role Akun" />
+                        <TextField fx:id="roleInput" promptText="Input Role Akun" style="-fx-font: 16px Helvetica; -fx-padding: 10px" />
                      </children>
                   </VBox>
                   <HBox>

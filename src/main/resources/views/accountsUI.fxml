@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" style="-fx-background-color: snow;" stylesheets="@../styles/lapanganStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controllers.LapanganController">
+<HBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" 
+   style="-fx-background-color: snow;" stylesheets="@../styles/AccountsStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controllers.AccountsController">
    <children>
 
       <fx:include source="sidebarUI.fxml" />
@@ -27,9 +28,9 @@
                   <TableView fx:id="table" VBox.vgrow="ALWAYS">
                      <columns>
                         <TableColumn fx:id="idCol" style="-fx-alignment: CENTER;" styleClass="tableColumn" text="ID" />
-                        <TableColumn fx:id="namaCol" styleClass="tableColumn" text="Nama Lapangan" />
-                        <TableColumn fx:id="hargaCol" styleClass="tableColumn" text="Harga per jam (Rp)" />
-                        <TableColumn fx:id="statusCol" style="-fx-alignment: CENTER;" styleClass="tableColumn" text="Status" />
+                        <TableColumn fx:id="usernameCol" styleClass="tableColumn" text="Username" />
+                        <TableColumn fx:id="passwordCol" styleClass="tableColumn" text="Password" />
+                        <TableColumn fx:id="roleCol" style="-fx-alignment: CENTER;" styleClass="tableColumn" text="role" />
                      </columns>
       
                      <columnResizePolicy>
@@ -39,11 +40,10 @@
       
                   <HBox spacing="10.0" VBox.vgrow="NEVER">
                      <children>
-                        <Button fx:id="tambahButton" onAction="#toAddPage" prefWidth="100" styleClass="button" text="Tambah" />
-                        <Button fx:id="editButton" onAction="#toAddPage" prefWidth="100" styleClass="button" text="Edit" />
-                        <Button fx:id="hapusButton" onAction="#deleteRowLapangan" prefWidth="100" styleClass="button" text="Hapus" />
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button fx:id="sewaButton" prefWidth="100" styleClass="button" text="Sewa" />
+                        <Button fx:id="tambahButton" onAction="#toAccountsUI" prefWidth="100" styleClass="button" text="Tambah" />
+                        <Button fx:id="editButton" onAction="#toAccountsUI" prefWidth="100" styleClass="button" text="Edit" />
+                        <Button fx:id="hapusButton"  prefWidth="100" styleClass="button" text="Hapus" />
                      </children>
                   </HBox>
       
