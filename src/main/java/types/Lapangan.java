@@ -1,5 +1,7 @@
 package main.java.types;
 
+import java.util.HashMap;
+
 public class Lapangan {
     private int id;
     private String nama;
@@ -18,6 +20,10 @@ public class Lapangan {
         this.nama = nama;
         this.harga = harga;
         this.status = status;
+    }
+
+    public void tambahLapangan() {
+        
     }
 
     public int getId() {
