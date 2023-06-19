@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,400;0,700;1,400&display=swap');
+
+.sidebarContainer {
+    -fx-background-color: white; 
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.2, 0, 0);
+    -fx-border-color: rgb(200, 200, 200) transparent transparent transparent; 
+}
+
+.sidebarTitle {
+    -fx-font: 50px Poppins;
+}
+
+.userLayout {
+    -fx-background-color: white;
+    -fx-font: 16px Poppins;
+}
+
+.button {
+    -fx-font: 16px Poppins;
+    -fx-background-color: white;
+    -fx-padding: 10px 20px 10px 20px;
+    -fx-border-width: 0px 0px 0px 5px;
+}
+
+.button:hover {
+    -fx-background-color: rgb(230, 230, 230);
+    -fx-border-color: transparent transparent transparent rgb(50, 144, 255);
+}

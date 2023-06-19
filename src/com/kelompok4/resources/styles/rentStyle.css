@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,400;0,700;1,400&display=swap');
+
+.title {
+    -fx-font: 50px Helvetica;
+    -fx-text-fill: white;
+}
+
+.titleContainer {
+    -fx-background-color: linear-gradient(to right, rgba(50,144,255,1), rgba(0,212,255,1));
+    -fx-background-radius: 10px;
+    -fx-padding: 0px 30px 0px 30px;
+}
+
+.button {
+    -fx-font: 16px Helvetica;
+}
+
+.contentContainer {
+    -fx-background-color: white; 
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.2, 0, 0); 
+    -fx-background-radius: 10px;
+}
+
+.subtitle {
+    -fx-font: 16px Helvetica;
+    -fx-text-fill: black;
+}
+
+.ScrollPane {
+    -fx-backgrund-color: snow;
+    -fx-border-color: snow;
+}
+
+.mainContainer {
+    -fx-padding: 0px 0px 0px 10px;
+}
