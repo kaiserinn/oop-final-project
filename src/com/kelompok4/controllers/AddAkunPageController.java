@@ -26,7 +26,7 @@ public class AddAkunPageController {
 
     @FXML
     private void saveButtonClicked() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/accountsUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/accountsUI.fxml"));
         Parent root = loader.load();
         AccountsController accountsController = loader.getController();
         

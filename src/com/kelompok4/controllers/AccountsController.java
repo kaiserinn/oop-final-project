@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import com.kelompok4.DB;
 import com.kelompok4.types.Akun;
-import com.kelompok4.types.Lapangan;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

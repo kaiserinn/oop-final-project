@@ -16,8 +16,6 @@ public class AddPageController {
     private TextField namaInput;
     @FXML
     private TextField hargaInput;
-    @FXML
-    private TextField statusInput;
 
     private String buttonStatus;
     private int rowIndex;
@@ -30,7 +28,6 @@ public class AddPageController {
         
         String nama = namaInput.getText(); 
         String harga = hargaInput.getText();
-        String status = statusInput.getText();
 
         try {
             Scene scene = new Scene(root);
@@ -41,10 +38,10 @@ public class AddPageController {
         }
 
         if (buttonStatus.equals("Tambah")) {
-            lapanganController.tambahLapangan(nama, harga, status);
+            lapanganController.tambahLapangan(nama, harga);
         } else {
             System.out.println("edit");
-            lapanganController.editLapangan(nama, harga, status, rowIndex);
+            lapanganController.editLapangan(nama, harga, rowIndex);
         }
         System.out.println("not working: "+ buttonStatus);
     }
