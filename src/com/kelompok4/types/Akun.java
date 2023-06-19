@@ -1,4 +1,4 @@
-package main.java.types;
+package com.kelompok4.types;
 
 public class Akun {
     private int id;

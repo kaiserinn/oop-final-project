@@ -1,4 +1,4 @@
-package main.java.types;
+package com.kelompok4.types;
 
 import java.util.HashMap;
 
