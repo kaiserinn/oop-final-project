@@ -10,6 +10,10 @@ public class Lapangan {
     private String nama;
     private String harga;
 
+    public Lapangan(String nama, String harga) {
+        this(0, nama, harga);
+    }
+    
     public Lapangan(int id, String nama, String harga) {
         this.id = id;
         this.nama = nama;
@@ -25,7 +29,7 @@ public class Lapangan {
         }
 
         try {
-            PreparedStatement statement = DB.prepareStatement("INSERT INTO akun (nama, harga) VALUES (?, ?)");
+            PreparedStatement statement = DB.prepareStatement("INSERT INTO lapangan (nama, harga) VALUES (?, ?)");
             statement.setString(1, this.nama);
             statement.setString(2, this.harga);
             statement.executeUpdate();

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.kelompok4.DB;
-import com.kelompok4.types.Akun;
 import com.kelompok4.types.Lapangan;
 
 import javafx.collections.*;
@@ -36,7 +35,6 @@ public class LapanganController {
 
     public static String nama;
     public static String harga;
-    public static String status;
     
     @FXML
     private void initialize() {
@@ -83,7 +81,7 @@ public class LapanganController {
 
     @FXML
     private void toAddPage(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/addPageUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/addPageUI.fxml"));
         Parent root = loader.load();
         AddPageController addPageController = loader.getController();
         
@@ -98,7 +96,6 @@ public class LapanganController {
         if (event.getSource() instanceof Button) {
             Button clickedButton = (Button) event.getSource();
             buttonText = clickedButton.getText();
-            System.out.println("Button clicked: " + buttonText);
         }
 
         if (buttonText.equals("Tambah")) {
@@ -111,16 +108,19 @@ public class LapanganController {
     public void tambahLapangan(String nama, String harga) throws IOException {
         int numItems = table.getItems().size();
 
-        if (nama.isEmpty() || harga.isEmpty() || status.isEmpty()) {
+        if (nama.isEmpty() || harga.isEmpty()) {
             MessageBox.show("Mohon isi semua field", "Error");
         } else {
-            data.add(new Lapangan(numItems+1, nama, harga));
+            Lapangan lapangan = new Lapangan(nama, harga);
+            if (lapangan.tambahLapangan()) {
+                data.add(new Lapangan(numItems+1, nama, harga));
+                table.refresh();
+            }
         }
     }
 
     @FXML
     public void editLapangan(String nama, String harga, int index) throws IOException {
-        System.out.println("editLapangan");
         ObservableList<Lapangan> items = table.getItems();
 
         if (index < 1) {
@@ -129,7 +129,7 @@ public class LapanganController {
 
         for (Lapangan lapangan : items) {
             if (lapangan.getId() == index+1) {
-                if (nama.isEmpty() || harga.isEmpty() || status.isEmpty()) {
+                if (nama.isEmpty() || harga.isEmpty()) {
                     MessageBox.show("Mohon isi semua field", "Error");
                 } else {
                     lapangan.setNama(nama);

@@ -34,12 +34,6 @@
                         <TextField fx:id="hargaInput" promptText="Harga" style="-fx-font: 16px Helvetica; -fx-padding: 10px" />
                      </children>
                   </VBox>
-                  <VBox>
-                     <children>
-                        <Label style="-fx-font: 14px Helvetica" text="Status Lapangan" />
-                        <TextField fx:id="statusInput" promptText="Status" style="-fx-font: 16px Helvetica; -fx-padding: 10px" />
-                     </children>
-                  </VBox>
                   <HBox>
                      <children>
                         <Button prefWidth="80.0" text="Cancel" />
