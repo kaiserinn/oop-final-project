@@ -46,11 +46,11 @@ public class LapanganController {
     private ObservableList<Lapangan> loadData() {
         data = FXCollections.observableArrayList();
 
-        data.add(new Lapangan(1, "Lapangan 1", "10.000", "Tersedia"));
-        data.add(new Lapangan(2, "Lapangan 2", "30.000", "Tersedia"));
-        data.add(new Lapangan(3, "Lapangan 3", "20.000", "Tersedia"));
-        data.add(new Lapangan(4, "Lapangan 4", "35.000", "Tersedia"));
-        data.add(new Lapangan(5, "Lapangan 5", "40.000", "Tersedia"));
+        data.add(new Lapangan(1, "Lapangan 1", "10.000"));
+        data.add(new Lapangan(2, "Lapangan 2", "30.000"));
+        data.add(new Lapangan(3, "Lapangan 3", "20.000"));
+        data.add(new Lapangan(4, "Lapangan 4", "35.000"));
+        data.add(new Lapangan(5, "Lapangan 5", "40.000"));
         
         return data;
     }
@@ -82,18 +82,18 @@ public class LapanganController {
         }
     }
     
-    public void tambahLapangan(String nama, String harga, String status) throws IOException {
+    public void tambahLapangan(String nama, String harga) throws IOException {
         int numItems = table.getItems().size();
 
         if (nama.isEmpty() || harga.isEmpty() || status.isEmpty()) {
             MessageBox.show("Mohon isi semua field", "Error");
         } else {
-            data.add(new Lapangan(numItems+1, nama, harga, status));
+            data.add(new Lapangan(numItems+1, nama, harga));
         }
     }
 
     @FXML
-    public void editLapangan(String nama, String harga, String status, int index) throws IOException {
+    public void editLapangan(String nama, String harga, int index) throws IOException {
         System.out.println("editLapangan");
         ObservableList<Lapangan> items = table.getItems();
 
@@ -108,14 +108,9 @@ public class LapanganController {
                 } else {
                     lapangan.setNama(nama);
                     lapangan.setHarga(harga);
-                    lapangan.setStatus(status);
                     table.refresh();
                 }
             }
-        }
-
-        for (Lapangan lapangan: items) {
-            System.out.println(lapangan.getId() + " " + lapangan.getNama() + " " + lapangan.getHarga() + " " + lapangan.getStatus());
         }
     }
 

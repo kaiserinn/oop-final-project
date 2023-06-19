@@ -4,15 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class SidebarController {
     @FXML
     private Pane rootPane;
-    // @FXML
-    // private Button daftarLapangan, tambahLapangan, sewaLapangan, daftarAkun;
     
     @FXML
     private void logout() {
