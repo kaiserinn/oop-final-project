@@ -1,20 +1,67 @@
 package com.kelompok4.types;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.kelompok4.DB;
+
 public class Lapangan {
     private int id;
     private String nama;
     private String harga;
 
-    public Lapangan() {
-        this.id = 0;
-        this.nama = "";
-        this.harga = "";
-    }
-
     public Lapangan(int id, String nama, String harga) {
         this.id = id;
         this.nama = nama;
         this.harga = harga;
+    }
+
+    public boolean tambahLapangan() {
+        try {
+            DB.loadJDBCDriver();
+            DB.connect();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            PreparedStatement statement = DB.prepareStatement("INSERT INTO akun (nama, harga) VALUES (?, ?)");
+            statement.setString(1, this.nama);
+            statement.setString(2, this.harga);
+            statement.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                DB.disconnect();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } return false;
+    }
+
+    public boolean hapusLapangan() {
+        try {
+            DB.loadJDBCDriver();
+            DB.connect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            PreparedStatement statement = DB.prepareStatement("DELETE FROM lapangan WHERE id = ?");
+            statement.setInt(1, this.id);
+            statement.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                DB.disconnect();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } return false;
     }
 
     public int getId() {

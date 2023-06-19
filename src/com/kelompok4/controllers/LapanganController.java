@@ -1,7 +1,12 @@
 package com.kelompok4.controllers;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import com.kelompok4.DB;
+import com.kelompok4.types.Akun;
 import com.kelompok4.types.Lapangan;
 
 import javafx.collections.*;
@@ -23,7 +28,7 @@ public class LapanganController {
     @FXML
     private TableColumn<Lapangan, Integer> idCol;
     @FXML
-    private TableColumn<Lapangan, String> namaCol, hargaCol, statusCol;
+    private TableColumn<Lapangan, String> namaCol, hargaCol;
     @FXML
     private Button tambahButton, sewaButton;
 
@@ -38,7 +43,6 @@ public class LapanganController {
         idCol.setCellValueFactory(new PropertyValueFactory<Lapangan, Integer>("id"));
         namaCol.setCellValueFactory(new PropertyValueFactory<Lapangan, String>("nama"));
         hargaCol.setCellValueFactory(new PropertyValueFactory<Lapangan, String>("harga"));
-        statusCol.setCellValueFactory(new PropertyValueFactory<Lapangan, String>("status"));
 
         table.setItems(loadData());
     }
@@ -46,11 +50,33 @@ public class LapanganController {
     private ObservableList<Lapangan> loadData() {
         data = FXCollections.observableArrayList();
 
-        data.add(new Lapangan(1, "Lapangan 1", "10.000"));
-        data.add(new Lapangan(2, "Lapangan 2", "30.000"));
-        data.add(new Lapangan(3, "Lapangan 3", "20.000"));
-        data.add(new Lapangan(4, "Lapangan 4", "35.000"));
-        data.add(new Lapangan(5, "Lapangan 5", "40.000"));
+        try {
+            DB.loadJDBCDriver();
+            DB.connect();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            PreparedStatement statement = DB.prepareStatement("SELECT * FROM lapangan");
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String nama = resultSet.getString("nama");
+                String harga = resultSet.getString("harga");
+
+                data.add(new Lapangan(id, nama, harga));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                DB.disconnect();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         
         return data;
     }

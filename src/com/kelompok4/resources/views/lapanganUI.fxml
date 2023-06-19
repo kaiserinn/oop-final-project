@@ -29,7 +29,6 @@
                         <TableColumn fx:id="idCol" style="-fx-alignment: CENTER;" styleClass="tableColumn" text="ID" />
                         <TableColumn fx:id="namaCol" styleClass="tableColumn" text="Nama Lapangan" />
                         <TableColumn fx:id="hargaCol" styleClass="tableColumn" text="Harga per jam (Rp)" />
-                        <TableColumn fx:id="statusCol" style="-fx-alignment: CENTER;" styleClass="tableColumn" text="Status" />
                      </columns>
       
                      <columnResizePolicy>
