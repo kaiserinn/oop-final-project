@@ -35,9 +35,7 @@ public abstract class Account {
         this.password = password;
     }
 
-    public abstract void tambahAkun();
-
-    public abstract void ubahAkun();
+    public abstract boolean tambahAkun();
 
     public abstract void hapusAkun();
     

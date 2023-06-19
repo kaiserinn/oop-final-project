@@ -7,20 +7,17 @@ import java.sql.SQLException;
 import com.kelompok4.DB;
 
 public class User extends Account {
-    private Lapangan lapangan;
     public static String role = "user";
 
     public User(String username, String password) {
         super(0, username, password);
-        this.lapangan = new Lapangan();
     }
 
     public User(int id, String username, String password) {
         super(id, username, password);
-        this.lapangan = new Lapangan();
     }
 
-    public void tambahAkun() {
+    public int getId() {
         try {
             DB.loadJDBCDriver();
             DB.connect();
@@ -28,38 +25,42 @@ public class User extends Account {
             e.printStackTrace();
         }
 
-        catch (Exception e) {
+        try {
+            PreparedStatement statement = DB.prepareStatement("SELECT * FROM akun WHERE username = ? AND password = ?");
+            System.out.println(this.getUsername());
+            System.out.println(this.getPassword());
+            statement.setString(1, this.getUsername());
+            statement.setString(2, this.getPassword());
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                DB.disconnect();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } return -1;
+    }
+
+    public boolean tambahAkun() {
+        try {
+            DB.loadJDBCDriver();
+            DB.connect();
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+
         try {
             PreparedStatement statement = DB.prepareStatement("INSERT INTO akun (username, password, role) VALUES (?, ?, ?)");
             statement.setString(1, this.getUsername());
             statement.setString(2, this.getPassword());
             statement.setString(3, role);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                DB.disconnect();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void ubahAkun() {
-        try {
-            DB.loadJDBCDriver();
-            DB.connect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            PreparedStatement statement = DB.prepareStatement("UPDATE akun SET username = ?, password = ? WHERE id = ?");
-            statement.setString(1, this.getUsername());
-            statement.setString(2, this.getPassword());
-            statement.setInt(3, this.getId());
             statement.executeUpdate();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -68,7 +69,7 @@ public class User extends Account {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        } return false;
     }
 
     public void hapusAkun() {
