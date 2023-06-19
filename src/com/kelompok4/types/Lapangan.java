@@ -1,6 +1,7 @@
 package com.kelompok4.types;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.kelompok4.DB;
@@ -18,6 +19,33 @@ public class Lapangan {
         this.id = id;
         this.nama = nama;
         this.harga = harga;
+    }
+ 
+    public int getDatabaseId() {
+        try {
+            DB.loadJDBCDriver();
+            DB.connect();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            PreparedStatement statement = DB.prepareStatement("SELECT * FROM lapangan WHERE nama = ? AND harga = ?");
+            statement.setString(1, this.nama);
+            statement.setString(2, this.harga);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                DB.disconnect();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } return -1;
     }
 
     public boolean tambahLapangan() {
@@ -45,7 +73,7 @@ public class Lapangan {
         } return false;
     }
 
-    public boolean hapusLapangan() {
+    public boolean hapusLapangan(int id) {
         try {
             DB.loadJDBCDriver();
             DB.connect();
@@ -54,7 +82,7 @@ public class Lapangan {
         }
         try {
             PreparedStatement statement = DB.prepareStatement("DELETE FROM lapangan WHERE id = ?");
-            statement.setInt(1, this.id);
+            statement.setInt(1, id);
             statement.executeUpdate();
             return true;
         } catch (Exception e) {

@@ -143,8 +143,17 @@ public class LapanganController {
     public void deleteRowLapangan() {
         Lapangan selectedLapangan = table.getSelectionModel().getSelectedItem();
 
-        if (selectedLapangan != null) {
+        if (selectedLapangan == null) {
+            MessageBox.show("Mohon pilih baris yang ingin dihapus", "Error");
+            return;
+        }
+        
+        int lapanganId = selectedLapangan.getDatabaseId();
+        if (selectedLapangan.hapusLapangan(lapanganId)) {
+            MessageBox.show("Berhasil menghapus lapangan", "Success");
             data.remove(selectedLapangan);
+        } else {
+            MessageBox.show("Gagal menghapus lapangan", "Error");
         }
     }
 }
