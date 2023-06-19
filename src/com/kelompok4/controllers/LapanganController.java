@@ -101,7 +101,8 @@ public class LapanganController {
         if (buttonText.equals("Tambah")) {
             addPageController.receiveStatus(buttonText);
         } else {
-            addPageController.receiveStatus(buttonText, table.getSelectionModel().getSelectedIndices().get(0));
+            Lapangan selectedLapangan = table.getSelectionModel().getSelectedItem();
+            addPageController.receiveStatus(buttonText, selectedLapangan);
         }
     }
     
@@ -119,28 +120,24 @@ public class LapanganController {
         }
     }
 
-    @FXML
-    public void editLapangan(String nama, String harga, int index) throws IOException {
-        ObservableList<Lapangan> items = table.getItems();
-
-        if (index < 1) {
+    public void editLapangan(String nama, String harga, Lapangan selectedLapangan) throws IOException {
+        if (selectedLapangan == null) {
+            MessageBox.show("Mohon pilih baris yang ingin diubah", "Error");
             return;
         }
-
-        for (Lapangan lapangan : items) {
-            if (lapangan.getId() == index+1) {
-                if (nama.isEmpty() || harga.isEmpty()) {
-                    MessageBox.show("Mohon isi semua field", "Error");
-                } else {
-                    lapangan.setNama(nama);
-                    lapangan.setHarga(harga);
-                    table.refresh();
-                }
-            }
+        
+        int lapanganId = selectedLapangan.getDatabaseId();
+        Lapangan newLapangan = new Lapangan(lapanganId, nama, harga);
+        if (newLapangan.editLapangan(lapanganId)) {
+            MessageBox.show("Berhasil mengubah lapangan", "Success");
+            table.setItems(loadData());
+        } else {
+            MessageBox.show("Gagal mengubah lapangan", "Error");
         }
     }
 
-    public void deleteRowLapangan() {
+    @FXML
+    private void deleteRowLapangan() {
         Lapangan selectedLapangan = table.getSelectionModel().getSelectedItem();
 
         if (selectedLapangan == null) {

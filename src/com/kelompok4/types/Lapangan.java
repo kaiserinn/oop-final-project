@@ -73,6 +73,32 @@ public class Lapangan {
         } return false;
     }
 
+    public boolean editLapangan(int id) {
+        try {
+            DB.loadJDBCDriver();
+            DB.connect();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            PreparedStatement statement = DB.prepareStatement("UPDATE lapangan SET nama = ?, harga = ? WHERE id = ?");
+            statement.setString(1, this.nama);
+            statement.setString(2, this.harga);
+            statement.setInt(3, id);
+            statement.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                DB.disconnect();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } return false;
+    }
+
     public boolean hapusLapangan(int id) {
         try {
             DB.loadJDBCDriver();
