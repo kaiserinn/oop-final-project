@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,400;0,700;1,400&display=swap');
 
-* {
-    -fx-font-family: Poppins;   
-}
-
 .stackpane {
     -fx-background-color: snow;
+    -fx-background-image: url("../../../../../img/login-background.jpg");
+    -fx-background-size: cover;
 }
 
 .vbox {
@@ -39,10 +37,21 @@
     -fx-border-radius: 50px;
 }
 
+.loginButton:hover {
+    -fx-background-color: rgb(92, 168, 255);
+    -fx-border-color: rgb(92, 168, 255);
+}
+
 .logoutButton {
     -fx-background-color: white;
     -fx-border-color: rgb(50, 144, 255);
     -fx-text-fill: rgb(50, 144, 255);
     -fx-background-radius: 50px;
     -fx-border-radius: 50px;
+}
+
+.logoutButton:hover {
+    -fx-background-color: rgb(50, 144, 255);
+    -fx-border-color: rgb(50, 144, 255);
+    -fx-text-fill: white;
 }
