@@ -27,8 +27,6 @@ public class User extends Account {
 
         try {
             PreparedStatement statement = DB.prepareStatement("SELECT * FROM akun WHERE username = ? AND password = ?");
-            System.out.println(this.getUsername());
-            System.out.println(this.getPassword());
             statement.setString(1, this.getUsername());
             statement.setString(2, this.getPassword());
             ResultSet resultSet = statement.executeQuery();
@@ -55,6 +53,18 @@ public class User extends Account {
         }
 
         try {
+            PreparedStatement stm = DB.prepareStatement("SELECT * FROM akun WHERE username = ?");
+            stm.setString(1, this.getUsername());
+            ResultSet resultSet = stm.executeQuery();
+
+            if (!resultSet.next()) {
+                System.out.println("Username sudah terdaftar!");
+                return false;
+            } else if (resultSet.next()) {
+                System.out.println("Username belum terdaftar!");
+                return true;
+            }
+
             PreparedStatement statement = DB.prepareStatement("INSERT INTO akun (username, password, role) VALUES (?, ?, ?)");
             statement.setString(1, this.getUsername());
             statement.setString(2, this.getPassword());

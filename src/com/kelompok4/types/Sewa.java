@@ -1,7 +1,6 @@
 package com.kelompok4.types;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -24,7 +23,6 @@ public class Sewa {
     }
 
     public boolean sewaLapangan() {
-        System.out.println(this.id + " " + this.tanggal + " " + this.sesi + " " + this.lapanganId + " " + this.userId);
         try {
             DB.loadJDBCDriver();
             DB.connect();
