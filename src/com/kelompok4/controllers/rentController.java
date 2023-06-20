@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 import com.kelompok4.DB;
 import com.kelompok4.types.Sewa;
+import com.kelompok4.types.Transaksi;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.*;
@@ -71,12 +72,9 @@ public class rentController {
             statement.setDate(4, java.sql.Date.valueOf(tanggal));
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println(lapanganId + " " + sesi + " " + tanggal);
             if (resultSet.next()) {
-                System.out.println("test");
                 return true;
             } else {
-                System.out.println("tesss");
                 return false;
             }
         } catch (Exception e) {
@@ -92,29 +90,27 @@ public class rentController {
     }
 
     @FXML
-    private void sewa(LocalDate tanggal, String sesi, int lapanganId) {
-        // FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/accountsUI.fxml"));
-        // Parent root = loader.load();
-        // AccountsController accountsController = loader.getController();
-        
-        int userId = LoginController.loginUser.getId();
-        Sewa sewa = new Sewa(0, tanggal, sesi, lapanganId,  userId);
-
-        // try {
-        //     Scene scene = new Scene(root);
-        //     Stage stage = (Stage) rootPane.getScene().getWindow();
-        //     stage.setScene(scene);
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
+    private void sewa(LocalDate tanggal, String sesi, int lapanganId, int harga) {
+        int balance = LoginController.loginUser.getDatabaseBalance();
+        int userId = LoginController.loginUser.getDatabaseId();
+        Sewa sewa = new Sewa(0, tanggal, sesi, userId, lapanganId);
 
         if (sesiDisewa(lapanganId, userId, sesi, tanggal)) {
             MessageBox.show("Sesi sudah disewa!", "Error");
             return;
         }
-        
+        if ((balance - harga) < 0) {
+            MessageBox.show("Saldo tidak cukup!", "Error");
+            return;
+        }
         if (sewa.sewaLapangan()) {
-            MessageBox.show("Lapangan berhasil disewa!", "Success");
+            int newBalance = balance - harga;
+            System.out.println(newBalance + " = " + balance + " - " + harga);
+            LoginController.loginUser.setDatabaseBalance(newBalance, userId);
+            Transaksi transaksi = new Transaksi(harga, LocalDate.now(), sewa.getId());
+            if (transaksi.tambah()) {
+                MessageBox.show("Lapangan berhasil disewa!", "Success");
+            }
         } else {
             MessageBox.show("Lapangan gagal disewa!", "Error");
         }
@@ -144,7 +140,7 @@ public class rentController {
         titleContainer.setSpacing(20);
         titleContainer.setAlignment(Pos.CENTER_LEFT);
 
-        Label subtitleLabel = new Label("Harga per sesi:Rp. " + harga);
+        Label subtitleLabel = new Label("Harga per sesi: Rp. " + harga);
         subtitleLabel.getStyleClass().add("subtitle");
 
         HBox buttonContainer = new HBox();
@@ -169,7 +165,7 @@ public class rentController {
         sewaButton.setPrefWidth(142.0);
         sewaButton.setMnemonicParsing(false);
         sewaButton.setOnAction(e -> {
-            sewa(datePicker.getValue(), comboBox.getValue(), id);
+            sewa(datePicker.getValue(), comboBox.getValue(), id, Integer.valueOf(harga));
             datePicker.setValue(null);
             comboBox.setValue(null);
         });
