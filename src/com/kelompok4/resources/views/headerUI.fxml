@@ -6,7 +6,8 @@
 
 <HBox styleClass="header" stylesheets="@../styles/headerStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kelompok4.controllers.HeaderController">
     <children>
+        <Label fx:id="balanceLabel" styleClass="usernameLabel" text="0" />
         <Region HBox.hgrow="ALWAYS" />
-        <Label fx:id="usernameLabel" styleClass="usernameLabel" text="Azhar Rizqullah" />
+        <Label fx:id="usernameLabel" styleClass="usernameLabel" text="Username" />
     </children>
 </HBox>
