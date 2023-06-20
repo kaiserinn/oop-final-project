@@ -12,7 +12,7 @@ public class SidebarController {
     @FXML
     private Pane rootPane;
     @FXML
-    private Button daftarLapangan, tambahLapangan, daftarAkun;
+    private Button daftarLapangan, tambahLapangan, daftarAkun, tambahAkun;
 
     @FXML
     private void initialize() {
@@ -24,6 +24,8 @@ public class SidebarController {
                 tambahLapangan.setManaged(false);
                 daftarAkun.setVisible(false);
                 daftarAkun.setManaged(false);
+                tambahAkun.setVisible(false);
+                tambahAkun.setManaged(false);
             } 
         }
     }
@@ -78,9 +80,33 @@ public class SidebarController {
     }
 
     @FXML
+    private void toAddAccountsUI() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/views/addAkunPageUI.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void toRentPage() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../resources/views/rentUI.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void toTableRent() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/views/tableRentUI.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage) rootPane.getScene().getWindow();
             stage.setScene(scene);
