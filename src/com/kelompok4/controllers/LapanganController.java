@@ -112,9 +112,9 @@ public class LapanganController {
         if (nama.isEmpty() || harga.isEmpty()) {
             MessageBox.show("Mohon isi semua field", "Error");
         } else {
-            Lapangan lapangan = new Lapangan(nama, harga);
+            Lapangan lapangan = new Lapangan(numItems+1, nama, harga);
             if (lapangan.tambahLapangan()) {
-                data.add(new Lapangan(numItems+1, nama, harga));
+                data.add(lapangan);
                 table.refresh();
             }
         }

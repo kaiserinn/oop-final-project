@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.kelompok4.DB;
-import com.kelompok4.types.Akun;
+import com.kelompok4.types.User;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,29 +27,29 @@ public class AccountsController {
     @FXML
     private Pane rootPane;
     @FXML
-    private TableView<Akun> table;
+    private TableView<User> table;
     @FXML
-    private TableColumn<Akun, Integer> idCol;
+    private TableColumn<User, Integer> idCol;
     @FXML
-    private TableColumn<Akun, String> usernameCol;
+    private TableColumn<User, String> usernameCol;
     @FXML
-    private TableColumn<Akun, String> passwordCol;
+    private TableColumn<User, String> passwordCol;
     @FXML
-    private TableColumn<Akun, String> roleCol;
+    private TableColumn<User, String> roleCol;
 
-    private ObservableList<Akun> data;
+    private ObservableList<User> data;
     
     @FXML
     private void initialize() {
-        idCol.setCellValueFactory(new PropertyValueFactory<Akun, Integer>("id"));
-        usernameCol.setCellValueFactory(new PropertyValueFactory<Akun, String>("username"));
-        passwordCol.setCellValueFactory(new PropertyValueFactory<Akun, String>("password"));
-        roleCol.setCellValueFactory(new PropertyValueFactory<Akun, String>("role"));
+        idCol.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
+        usernameCol.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
+        passwordCol.setCellValueFactory(new PropertyValueFactory<User, String>("password"));
+        roleCol.setCellValueFactory(new PropertyValueFactory<User, String>("role"));
 
         table.setItems(loadData());
     }
 
-    private ObservableList<Akun> loadData() {
+    private ObservableList<User> loadData() {
         data = FXCollections.observableArrayList();
 
         try {
@@ -69,7 +69,7 @@ public class AccountsController {
                 String password = resultSet.getString("password");
                 String role = resultSet.getString("role");
 
-                data.add(new Akun(id, name, password, role));
+                data.add(new User(id, name, password, role));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,7 +86,7 @@ public class AccountsController {
 
     @FXML
     private void toAccountsUI(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/addAkunPageUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/addAkunPageUI.fxml"));
         Parent root = loader.load();
         AddAkunPageController addAkunPageController = loader.getController();
         
@@ -106,7 +106,8 @@ public class AccountsController {
         if (buttonText.equals("Tambah")) {
             addAkunPageController.receiveStatus(buttonText);
         } else {
-            addAkunPageController.receiveStatus(buttonText, table.getSelectionModel().getSelectedIndices().get(0));
+            User selectedUser = table.getSelectionModel().getSelectedItem();
+            addAkunPageController.receiveStatus(buttonText, selectedUser);
         }
     }
     
@@ -116,70 +117,45 @@ public class AccountsController {
         if (username.isEmpty() || password.isEmpty() || role.isEmpty()) {
             MessageBox.show("Mohon isi semua field", "Error");
         } else {
-            try {
-                DB.loadJDBCDriver();
-                DB.connect();
-            } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
+            User user = new User(numItems+1, username, password, role);
+            if (user.tambahAkun()) {
+                data.add(user);
+                table.refresh();
             }
-
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                PreparedStatement stm = DB.prepareStatement("INSERT INTO akun (username, password, role) VALUES (?, ?, ?)");
-                stm.setString(1, username);
-                stm.setString(2, password);
-                stm.setString(3, role);
-                if (stm.executeUpdate() > 0) {
-                    data.add(new Akun(numItems+1, username, password, role));
-                    table.refresh();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    DB.disconnect();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            
         }
     }
 
-    // @FXML
-    // public void editAkun(String nama, String harga, String status, int index) throws IOException {
-    //     System.out.println("editAkun");
-    //     ObservableList<Akun> items = table.getItems();
+    public void editAkun(String username, String password, User selectedUser) throws IOException {
+        if (selectedUser == null) {
+            MessageBox.show("Mohon pilih baris yang ingin diubah", "Error");
+            return;
+        }
+        
+        int userId = selectedUser.getDatabaseId();
+        User newUser = new User(userId, username, password);
+        if (newUser.editAkun(userId)) {
+            MessageBox.show("Berhasil mengubah akun", "Success");
+            table.setItems(loadData());
+        } else {
+            MessageBox.show("Gagal mengubah akun", "Error");
+        }
+    }
 
-    //     if (index < 1) {
-    //         return;
-    //     }
+    @FXML
+    private void deleteRowAkun() {
+        User selectedUser = table.getSelectionModel().getSelectedItem();
 
-    //     for (Akun Akun : items) {
-    //         if (Akun.getId() == index+1) {
-    //             if (nama.isEmpty() || harga.isEmpty() || status.isEmpty()) {
-    //                 MessageBox.show("Mohon isi semua field", "Error");
-    //             } else {
-    //                 Akun.setNama(nama);
-    //                 Akun.setHarga(harga);
-    //                 Akun.setStatus(status);
-    //                 table.refresh();
-    //             }
-    //         }
-    //     }
-
-    //     for (Akun Akun: items) {
-    //         System.out.println(Akun.getId() + " " + Akun.getNama() + " " + Akun.getHarga() + " " + Akun.getStatus());
-    //     }
-    // }
-
-    // public void deleteRowAkun() {
-    //     Akun selectedAkun = table.getSelectionModel().getSelectedItem();
-
-    //     if (selectedAkun != null) {
-    //         data.remove(selectedAkun);
-    //     }
-    // }
+        if (selectedUser == null) {
+            MessageBox.show("Mohon pilih baris yang ingin dihapus", "Error");
+            return;
+        }
+        
+        int userId = selectedUser.getDatabaseId();
+        if (selectedUser.hapusAkun(userId)) {
+            MessageBox.show("Berhasil menghapus akun", "Success");
+            data.remove(selectedUser);
+        } else {
+            MessageBox.show("Gagal menghapus akun", "Error");
+        }
+    }
 }
