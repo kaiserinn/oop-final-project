@@ -43,7 +43,7 @@
                         <Region HBox.hgrow="ALWAYS" />
                         <Button fx:id="tambahButton" onAction="#toAccountsUI" prefWidth="100" styleClass="button" text="Tambah" />
                         <Button fx:id="editButton" onAction="#toAccountsUI" prefWidth="100" styleClass="button" text="Edit" />
-                        <Button fx:id="hapusButton"  prefWidth="100" styleClass="button" text="Hapus" />
+                        <Button fx:id="hapusButton" onAction="#deleteRowAkun" prefWidth="100" styleClass="button" text="Hapus" />
                      </children>
                   </HBox>
       

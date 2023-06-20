@@ -39,7 +39,7 @@ public class LoginController {
                 loginState = true;
                 loginAs = username;
                 loginUser = user;
-                Parent root = FXMLLoader.load(getClass().getResource("../resources/views/lapanganUI.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("../resources/views/rentUI.fxml"));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) rootPane.getScene().getWindow();
                 stage.setScene(scene);

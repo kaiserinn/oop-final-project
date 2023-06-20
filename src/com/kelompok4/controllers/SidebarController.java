@@ -4,12 +4,29 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class SidebarController {
     @FXML
     private Pane rootPane;
+    @FXML
+    private Button daftarLapangan, tambahLapangan, daftarAkun;
+
+    @FXML
+    private void initialize() {
+        if (LoginController.loginState) {
+            if (LoginController.loginUser.getRole().equals("user")) {
+                daftarLapangan.setVisible(false);
+                daftarLapangan.setManaged(false);
+                tambahLapangan.setVisible(false);
+                tambahLapangan.setManaged(false);
+                daftarAkun.setVisible(false);
+                daftarAkun.setManaged(false);
+            } 
+        }
+    }
     
     @FXML
     private void logout() {
