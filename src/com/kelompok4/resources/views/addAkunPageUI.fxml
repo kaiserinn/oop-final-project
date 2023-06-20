@@ -22,7 +22,7 @@
 
             <VBox spacing="10.0" styleClass="contentContainer" VBox.vgrow="ALWAYS">
                <children>
-                  <Label styleClass="lapanganTitle" text="Akun Pengguna" />
+                  <Label styleClass="lapanganTitle" text="Sistem Informasi Penyewaan Lapangan Futsal" />
                   <VBox>
                      <children>
                         <Label style="-fx-font: 14px Helvetica" text="Username" />
@@ -39,6 +39,12 @@
                      <children>
                         <Label style="-fx-font: 14px Helvetica" text="Role Akun" />
                         <TextField fx:id="roleInput" promptText="Input Role Akun" style="-fx-font: 16px Helvetica; -fx-padding: 10px" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label style="-fx-font: 14px Helvetica" text="Balance" />
+                        <TextField fx:id="balanceInput" promptText="Input Akun Balance" style="-fx-font: 16px Helvetica; -fx-padding: 10px" />
                      </children>
                   </VBox>
                   <HBox>
