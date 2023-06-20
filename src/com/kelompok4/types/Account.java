@@ -37,7 +37,7 @@ public abstract class Account {
 
     public abstract boolean tambahAkun();
 
-    public abstract void hapusAkun();
+    public abstract boolean hapusAkun(int id);
     
     public abstract boolean login();
 }
