@@ -22,13 +22,13 @@
             <VBox spacing="10.0" styleClass="contentContainer" VBox.vgrow="ALWAYS">
                <children>
       
-                  <Label styleClass="lapanganTitle" text="Daftar Lapangan" />
+                  <Label styleClass="lapanganTitle" text="Sistem Informasi Penyewaan Lapangan Futsal" />
       
                   <TableView fx:id="table" VBox.vgrow="ALWAYS">
                      <columns>
                         <TableColumn fx:id="idCol" style="-fx-alignment: CENTER;" styleClass="tableColumn" text="ID" />
                         <TableColumn fx:id="namaCol" styleClass="tableColumn" text="Nama Lapangan" />
-                        <TableColumn fx:id="hargaCol" styleClass="tableColumn" text="Harga per jam (Rp)" />
+                        <TableColumn fx:id="hargaCol" styleClass="tableColumn" text="Harga per Sesi (Rp)" />
                      </columns>
       
                      <columnResizePolicy>
