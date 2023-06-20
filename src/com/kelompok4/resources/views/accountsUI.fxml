@@ -23,14 +23,15 @@
             <VBox spacing="10.0" styleClass="contentContainer" VBox.vgrow="ALWAYS">
                <children>
       
-                  <Label styleClass="lapanganTitle" text="Daftar Lapangan" />
+                  <Label styleClass="lapanganTitle" text="Sistem Informasi Penyewaan Lapangan Futsal" />
       
                   <TableView fx:id="table" VBox.vgrow="ALWAYS">
                      <columns>
                         <TableColumn fx:id="idCol" style="-fx-alignment: CENTER;" styleClass="tableColumn" text="ID" />
                         <TableColumn fx:id="usernameCol" styleClass="tableColumn" text="Username" />
                         <TableColumn fx:id="passwordCol" styleClass="tableColumn" text="Password" />
-                        <TableColumn fx:id="roleCol" style="-fx-alignment: CENTER;" styleClass="tableColumn" text="role" />
+                        <TableColumn fx:id="balanceCol" styleClass="tableColumn" text="Balance" />
+                        <TableColumn fx:id="roleCol" style="-fx-alignment: CENTER;" styleClass="tableColumn" text="Role" />
                      </columns>
       
                      <columnResizePolicy>
