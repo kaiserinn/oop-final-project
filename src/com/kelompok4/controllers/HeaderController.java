@@ -5,10 +5,11 @@ import javafx.scene.control.Label;
 
 public class HeaderController {
     @FXML
-    private Label usernameLabel;
+    private Label balanceLabel, usernameLabel;
     
     @FXML
     private void initialize() {
+        balanceLabel.setText("Rp. " + String.valueOf(LoginController.loginUser.getDatabaseBalance()));
         usernameLabel.setText(LoginController.loginAs);
     }
 }
