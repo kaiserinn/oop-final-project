@@ -35,6 +35,8 @@ public class AccountsController {
     @FXML
     private TableColumn<User, String> passwordCol;
     @FXML
+    private TableColumn<User, Integer> balanceCol;
+    @FXML
     private TableColumn<User, String> roleCol;
 
     private ObservableList<User> data;
@@ -44,6 +46,7 @@ public class AccountsController {
         idCol.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
         usernameCol.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
         passwordCol.setCellValueFactory(new PropertyValueFactory<User, String>("password"));
+        balanceCol.setCellValueFactory(new PropertyValueFactory<User, Integer>("balance"));
         roleCol.setCellValueFactory(new PropertyValueFactory<User, String>("role"));
 
         table.setItems(loadData());
@@ -67,9 +70,10 @@ public class AccountsController {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("username");
                 String password = resultSet.getString("password");
+                int balance = resultSet.getInt("balance");
                 String role = resultSet.getString("role");
 
-                data.add(new User(id, name, password, role));
+                data.add(new User(id, name, password, role, balance));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -111,13 +115,13 @@ public class AccountsController {
         }
     }
     
-    public void tambahAkun(String username, String password, String role) throws IOException {
+    public void tambahAkun(String username, String password, String role, int balance) throws IOException {
         int numItems = table.getItems().size();
 
         if (username.isEmpty() || password.isEmpty() || role.isEmpty()) {
             MessageBox.show("Mohon isi semua field", "Error");
         } else {
-            User user = new User(numItems+1, username, password, role);
+            User user = new User(numItems+1, username, password, role, balance);
             if (user.tambahAkun()) {
                 data.add(user);
                 table.refresh();
@@ -125,14 +129,14 @@ public class AccountsController {
         }
     }
 
-    public void editAkun(String username, String password, User selectedUser) throws IOException {
+    public void editAkun(String username, String password, User selectedUser, int balance) throws IOException {
         if (selectedUser == null) {
             MessageBox.show("Mohon pilih baris yang ingin diubah", "Error");
             return;
         }
         
         int userId = selectedUser.getDatabaseId();
-        User newUser = new User(userId, username, password);
+        User newUser = new User(userId, username, password, balance);
         if (newUser.editAkun(userId)) {
             MessageBox.show("Berhasil mengubah akun", "Success");
             table.setItems(loadData());
