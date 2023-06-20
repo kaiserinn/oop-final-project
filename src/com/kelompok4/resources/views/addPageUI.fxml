@@ -21,7 +21,7 @@
 
             <VBox spacing="10.0" styleClass="contentContainer" VBox.vgrow="ALWAYS">
                <children>
-                  <Label styleClass="lapanganTitle" text="Penyewaan Lapangan" />
+                  <Label styleClass="lapanganTitle" text="Sistem Informasi Penyewaan Lapangan Futsal" />
                   <VBox>
                      <children>
                         <Label style="-fx-font: 14px Helvetica" text="Nama Lapangan" />
