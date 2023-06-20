@@ -2,6 +2,8 @@ package com.kelompok4.controllers;
 
 import java.io.IOException;
 
+import com.kelompok4.types.User;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import utility.MessageBox;
 
 public class AddAkunPageController {
     @FXML
@@ -20,9 +23,11 @@ public class AddAkunPageController {
     private PasswordField passwordInput;
     @FXML
     private TextField roleInput;
+    @FXML
+    private TextField balanceInput;
 
     private String buttonStatus;
-    private int rowIndex;
+    private User selectedUser;
 
     @FXML
     private void saveButtonClicked() throws IOException {
@@ -33,6 +38,13 @@ public class AddAkunPageController {
         String username = usernameInput.getText(); 
         String password = passwordInput.getText();
         String role = roleInput.getText();
+        int balance;
+        try {
+            balance = Integer.valueOf(balanceInput.getText());
+        } catch (Exception e) {
+            MessageBox.show("Saldo harus berupa angka", "Error");
+            return;
+        }
 
         try {
             Scene scene = new Scene(root);
@@ -43,19 +55,19 @@ public class AddAkunPageController {
         }
 
         if (buttonStatus.equals("Tambah")) {
-            accountsController.tambahAkun(username, password, role);
+            accountsController.tambahAkun(username, password, role, balance);
         } 
-        // else {
-        //     accountsController.editAkun(username, password, role, rowIndex);
-        // }
+        else {
+            accountsController.editAkun(username, password, selectedUser, balance);
+        }
     }
 
     public void receiveStatus(String status) {
         buttonStatus = status;
     }
 
-    public void receiveStatus(String status, int index) {
+    public void receiveStatus(String status, User selectedUser) {
         buttonStatus = status;
-        rowIndex = index;
+        this.selectedUser = selectedUser;
     }
 }
