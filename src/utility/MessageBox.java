@@ -11,16 +11,19 @@ public class MessageBox {
         Stage stage = new Stage();
         stage.setTitle(title);
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setMinWidth(250);
+        stage.setMinWidth(300);
         
         Label label = new Label();
         label.setText(message);
+        label.setStyle("-fx-font-size: 16px;");
 
         Button button = new Button();
         button.setText("OK");
+        button.setPrefWidth(100);
         button.setOnAction(e -> stage.close());
+        button.setStyle("-fx-font-size: 16px;");
 
-        VBox layout = new VBox(10);
+        VBox layout = new VBox(20);
         layout.getChildren().addAll(label, button);
         layout.setPadding(new Insets(30));
         layout.setAlignment(Pos.CENTER);

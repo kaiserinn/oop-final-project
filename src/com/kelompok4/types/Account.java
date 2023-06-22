@@ -35,9 +35,5 @@ public abstract class Account {
         this.password = password;
     }
 
-    public abstract boolean tambahAkun();
-
-    public abstract boolean hapusAkun(int id);
-    
-    public abstract boolean login();
+    public abstract int getDatabaseId();
 }

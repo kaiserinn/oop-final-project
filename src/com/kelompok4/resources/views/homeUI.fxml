@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" style="-fx-background-color: rgb(255, 250, 250);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kelompok4.controllers.HomeController">
+   <children>
+
+      <fx:include source="sidebarUI.fxml" />
+      
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="ScrollPane" HBox.hgrow="ALWAYS">
+         <children>
+
+            <fx:include source="headerUI.fxml" />
+            <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: snow;" styleClass="ScrollPane" VBox.vgrow="ALWAYS">
+               <content>
+                  <VBox fx:id="mainContainer" spacing="30" style="-fx-background-color: snow;">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox alignment="CENTER" spacing="10.0" styleClass="contentContainer" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <ImageView fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/user-big.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="usernameLabel" styleClass="contentLabel" text="Azhar" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" spacing="10.0" styleClass="contentContainer" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <ImageView fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/wallet-big.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="balanceLabel" styleClass="contentLabel" text="Rp. 100000" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="contentContainer" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="tableTitle" text="List Lapangan disewa" />
+                              <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
+                                    <TableColumn fx:id="tanggalCol" prefWidth="75.0" text="Tanggal" />
+                                    <TableColumn fx:id="sesiCol" prefWidth="75.0" text="Sesi" />
+                                    <TableColumn fx:id="lapanganIdCol" prefWidth="75.0" text="ID Lapangan" />
+                                    <TableColumn fx:id="userIdCol" prefWidth="75.0" text="ID User" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </content>
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="0.0" top="20.0" />
+               </VBox.margin>
+            </ScrollPane>
+         </children>
+      </VBox> 
+
+   </children>
+   <stylesheets>
+      <URL value="@../styles/homeStyle.css" />
+      <URL value="@../styles/lapanganStyle.css" />
+   </stylesheets>
+</HBox>

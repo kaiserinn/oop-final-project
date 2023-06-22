@@ -2,15 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" 
-         style="-fx-background-color: snow;" stylesheets="@../styles/lapanganStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kelompok4.controllers.AddAkunPageController">
+<HBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" style="-fx-background-color: snow;" stylesheets="@../styles/lapanganStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kelompok4.controllers.AddAkunPageController">
    <children>
 
       <fx:include source="sidebarUI.fxml" />
@@ -38,7 +38,7 @@
                   <VBox>
                      <children>
                         <Label style="-fx-font: 14px Helvetica" text="Role Akun" />
-                        <TextField fx:id="roleInput" promptText="Input Role Akun" style="-fx-font: 16px Helvetica; -fx-padding: 10px" />
+                        <ComboBox fx:id="roleInput" promptText="Input Role Akun" style="-fx-font: 16px Helvetica;" />
                      </children>
                   </VBox>
                   <VBox>

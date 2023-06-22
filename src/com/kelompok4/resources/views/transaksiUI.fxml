@@ -40,7 +40,18 @@
                   <HBox spacing="10.0" VBox.vgrow="NEVER">
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button fx:id="hapusButton" onAction="#deleteRowTransaksi" prefWidth="100" styleClass="button" text="Hapus" />
+                        <Button fx:id="hapusButton" graphicTextGap="10.0" onAction="#deleteRowTransaksi" prefWidth="150.0" styleClass="button" text="Hapus">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/delete.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
                   </HBox>
       

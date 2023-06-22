@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.application.*;
 import javafx.stage.*;
 import javafx.scene.*;
+import javafx.scene.image.Image;
 import javafx.fxml.FXMLLoader;
 
 public class App extends Application {
@@ -16,6 +17,9 @@ public class App extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("resources/views/loginUI.fxml"));
         primaryStage.setTitle("Aplikasi Penyewaan Lapangan Futsal");
         primaryStage.setScene(new Scene(root));
+        primaryStage 
+                 .getIcons() 
+                 .add(new Image(getClass().getResourceAsStream("resources/img/logo.png")));
         primaryStage.show();
     }
 }

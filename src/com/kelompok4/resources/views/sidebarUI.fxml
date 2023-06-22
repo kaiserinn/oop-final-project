@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="rootPane" alignment="TOP_CENTER" minWidth="200.0" prefWidth="200.0" spacing="20.0" styleClass="sidebarContainer" stylesheets="@../styles/sidebarStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kelompok4.controllers.SidebarController">
+<VBox fx:id="rootPane" alignment="TOP_CENTER" minWidth="250.0" prefWidth="200.0" spacing="20.0" styleClass="sidebarContainer" stylesheets="@../styles/sidebarStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kelompok4.controllers.SidebarController">
    <padding>
       <Insets bottom="20.0" top="20.0" />
    </padding>
    <children>
       <ImageView fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../img/logo.png" />
+            <Image url="@../img/logo.png" />
          </image>
       </ImageView>
 
@@ -25,44 +25,105 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </Separator>
+      <Button fx:id="home" alignment="TOP_LEFT" graphicTextGap="20.0" onAction="#toHomePage" prefWidth="Infinity" styleClass="button" text="Home">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
 
-      <Button fx:id="sewaLapangan" alignment="TOP_LEFT" onAction="#toRentPage" prefWidth="Infinity" styleClass="button" text="Sewa Lapangan">
+      <Button fx:id="sewaLapangan" alignment="TOP_LEFT" graphicTextGap="20.0" onAction="#toRentPage" prefWidth="Infinity" styleClass="button" text="Sewa Lapangan">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/football-field-sidebar.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button fx:id="daftarPenyewa" alignment="TOP_LEFT" onAction="#toTableRent" prefWidth="Infinity" styleClass="button" text="Daftar Penyewa">
+      <Button fx:id="daftarPenyewa" alignment="TOP_LEFT" graphicTextGap="20.0" onAction="#toTableRent" prefWidth="Infinity" styleClass="button" text="Daftar Penyewa">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/table.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button fx:id="daftarLapangan" alignment="TOP_LEFT" onAction="#toDaftarLapangan" prefWidth="Infinity" styleClass="button" text="Daftar Lapangan">
+      <Button fx:id="daftarLapangan" alignment="TOP_LEFT" graphicTextGap="20.0" onAction="#toDaftarLapangan" prefWidth="Infinity" styleClass="button" text="Daftar Lapangan">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/table.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button fx:id="tambahLapangan" alignment="TOP_LEFT" onAction="#toAddPage" prefWidth="Infinity" styleClass="button" text="Tambah Lapangan">
+      <Button fx:id="tambahLapangan" alignment="TOP_LEFT" graphicTextGap="20.0" onAction="#toAddPage" prefWidth="Infinity" styleClass="button" text="Tambah Lapangan">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button fx:id="daftarAkun" alignment="TOP_LEFT" onAction="#toAccountsUI" prefWidth="Infinity" styleClass="button" text="Daftar Akun">
+      <Button fx:id="daftarAkun" alignment="TOP_LEFT" graphicTextGap="20.0" onAction="#toAccountsUI" prefWidth="Infinity" styleClass="button" text="Daftar Akun">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/table.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button fx:id="tambahAkun" alignment="TOP_LEFT" onAction="#toAddAccountsUI" prefWidth="Infinity" styleClass="button" text="Tambah Akun">
+      <Button fx:id="tambahAkun" alignment="TOP_LEFT" graphicTextGap="20.0" onAction="#toAddAccountsUI" prefWidth="Infinity" styleClass="button" text="Tambah Akun">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
 
       <Region VBox.vgrow="ALWAYS" />
       <Separator />
-      <Button alignment="TOP_LEFT" onAction="#logout" prefWidth="Infinity" text="Sign Out">
+      <Button alignment="TOP_LEFT" graphicTextGap="20.0" onAction="#logout" prefWidth="Infinity" text="Sign Out">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/sign-out.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </VBox>

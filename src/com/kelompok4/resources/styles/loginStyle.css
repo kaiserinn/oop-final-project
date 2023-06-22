@@ -2,7 +2,7 @@
 
 .stackpane {
     -fx-background-color: snow;
-    -fx-background-image: url("../../../../../img/login-background.jpg");
+    -fx-background-image: url("../img/login-background.jpg");
     -fx-background-size: cover;
 }
 

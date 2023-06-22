@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class AddPageController {
+public class AddLapanganPageController {
     @FXML
     private Pane rootPane;
     @FXML
@@ -19,7 +19,7 @@ public class AddPageController {
     @FXML
     private TextField hargaInput;
 
-    private String buttonStatus;
+    private String buttonStatus = "Tambah";
     private Lapangan lapangan;
 
     @FXML
@@ -43,6 +43,7 @@ public class AddPageController {
             lapanganController.tambahLapangan(nama, harga);
         } else {
             lapanganController.editLapangan(nama, harga, lapangan);
+            buttonStatus = "Tambah";
         }
     }
 

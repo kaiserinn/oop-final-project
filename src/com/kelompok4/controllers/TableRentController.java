@@ -33,8 +33,8 @@ public class TableRentController {
     
     @FXML
     private void initialize() {
-        if (LoginController.loginState) {
-            if (LoginController.loginUser.getRole().equals("user")) {
+        if (Global.loginState) {
+            if (Global.loginRole.equals("user")) {
                 hapusButton.setVisible(false);
                 hapusButton.setManaged(false);
             } 

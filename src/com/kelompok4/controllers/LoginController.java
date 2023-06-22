@@ -8,6 +8,8 @@ import javafx.scene.layout.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+import com.kelompok4.types.Admin;
+import com.kelompok4.types.Login;
 import com.kelompok4.types.User;
 import utility.MessageBox;
 
@@ -32,14 +34,20 @@ public class LoginController {
     private void login() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        User user = new User(username, password);
+
+        if (username.equals("") || password.equals("")) {
+            MessageBox.show("Mohon isi semua field", "Error");
+            return;
+        }
         
-        if (user.login()) {
+        Login login = new Login(username, password);
+        User user = new User(username, password);
+        if (login.login()) {
             try {
-                loginState = true;
-                loginAs = username;
-                loginUser = user;
-                Parent root = FXMLLoader.load(getClass().getResource("../resources/views/rentUI.fxml"));
+                Global.loginState = true;
+                Global.loginAs = username;
+                Global.loginUser = user;
+                Parent root = FXMLLoader.load(getClass().getResource("../resources/views/homeUI.fxml"));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) rootPane.getScene().getWindow();
                 stage.setScene(scene);
@@ -57,9 +65,15 @@ public class LoginController {
     private void register() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        User user = new User(username, password);
 
-        if (user.tambahAkun()) {
+        if (username.equals("") || password.equals("")) {
+            MessageBox.show("Mohon isi semua field", "Error");
+            return;
+        }
+        
+        Admin admin = new Admin(username, password);
+
+        if (admin.tambahAkun()) {
             MessageBox.show("Register success", "Success");
             usernameField.clear();
             passwordField.clear();

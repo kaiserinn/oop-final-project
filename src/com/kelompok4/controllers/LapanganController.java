@@ -81,9 +81,9 @@ public class LapanganController {
 
     @FXML
     private void toAddPage(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/addPageUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/addLapanganPageUI.fxml"));
         Parent root = loader.load();
-        AddPageController addPageController = loader.getController();
+        AddLapanganPageController addPageController = loader.getController();
         
         try {
             Stage stage = (Stage) rootPane.getScene().getWindow();

@@ -56,6 +56,7 @@ public class rentController {
         }
     }
 
+    // cek apakah sesi sudah disewa atau belum
     public boolean sesiDisewa(int lapanganId, int userId, String sesi, LocalDate tanggal) {
         try {
             DB.loadJDBCDriver();
@@ -65,11 +66,10 @@ public class rentController {
         }
 
         try {
-            PreparedStatement statement = DB.prepareStatement("SELECT * FROM sewa WHERE id_lapangan = ? AND id_user = ? AND sesi = ? AND tanggal = ?");
+            PreparedStatement statement = DB.prepareStatement("SELECT * FROM sewa WHERE id_lapangan = ? AND sesi = ? AND tanggal = ?");
             statement.setInt(1, lapanganId);
-            statement.setInt(2, userId);
-            statement.setString(3, sesi);
-            statement.setDate(4, java.sql.Date.valueOf(tanggal));
+            statement.setString(2, sesi);
+            statement.setDate(3, java.sql.Date.valueOf(tanggal));
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
@@ -91,8 +91,8 @@ public class rentController {
 
     @FXML
     private void sewa(LocalDate tanggal, String sesi, int lapanganId, int harga) {
-        int balance = LoginController.loginUser.getDatabaseBalance();
-        int userId = LoginController.loginUser.getDatabaseId();
+        int balance = Global.loginUser.getDatabaseBalance();
+        int userId = Global.loginUser.getDatabaseId();
         Sewa sewa = new Sewa(0, tanggal, sesi, userId, lapanganId);
 
         if (sesiDisewa(lapanganId, userId, sesi, tanggal)) {
@@ -105,8 +105,8 @@ public class rentController {
         }
         if (sewa.sewaLapangan()) {
             int newBalance = balance - harga;
-            System.out.println(newBalance + " = " + balance + " - " + harga);
-            LoginController.loginUser.setDatabaseBalance(newBalance, userId);
+            Global.loginUser.setDatabaseBalance(newBalance, userId);
+            Global.balanceLabel.setText("Rp. " + String.valueOf(Global.loginUser.getDatabaseBalance()));
             Transaksi transaksi = new Transaksi(harga, LocalDate.now(), sewa.getId());
             if (transaksi.tambah()) {
                 MessageBox.show("Lapangan berhasil disewa!", "Success");
@@ -127,7 +127,7 @@ public class rentController {
         ImageView imageView = new ImageView();
         imageView.setFitWidth(50.0);
         imageView.setPreserveRatio(true);
-        imageView.setImage(new Image(new File("A:\\Kuliah\\java\\final-project-oop\\img\\football-field.png").toURI().toString()));
+        imageView.setImage(new Image(new File("A:\\Kuliah\\java\\final-project-oop\\src\\com\\kelompok4\\resources\\img\\football-field.png").toURI().toString()));
 
         Label titleLabel = new Label(nama);
         titleLabel.getStyleClass().add("title");
@@ -149,13 +149,22 @@ public class rentController {
 
         ComboBox<String> comboBox = new ComboBox<>();
         comboBox.setItems(FXCollections.observableArrayList("Sesi 1", "Sesi 2", "Sesi 3"));
-        comboBox.setValue("Pilih Sesi");
+        comboBox.setPromptText("Pilih Sesi");
         comboBox.setPrefHeight(35.0);
         comboBox.setPrefWidth(150.0);
         
         DatePicker datePicker = new DatePicker();
         datePicker.setPrefHeight(35.0);
         datePicker.setPrefWidth(150.0);
+
+        // disable tanggal sebelum tanggal hari ini
+        datePicker.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                setDisable(date.isBefore(LocalDate.now()));
+            }
+        });
 
         Region buttonSpacerRegion = new Region();
         HBox.setHgrow(buttonSpacerRegion, Priority.ALWAYS);

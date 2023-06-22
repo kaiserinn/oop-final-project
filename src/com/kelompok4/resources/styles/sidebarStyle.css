@@ -26,3 +26,8 @@
     -fx-background-color: rgb(230, 230, 230);
     -fx-border-color: transparent transparent transparent rgb(50, 144, 255);
 }
+
+.button-active {
+    -fx-background-color: rgb(230, 230, 230);
+    -fx-border-color: transparent transparent transparent rgb(50, 144, 255);
+}

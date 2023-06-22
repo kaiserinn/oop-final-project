@@ -8,9 +8,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
 <HBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" 
-   style="-fx-background-color: snow;" stylesheets="@../styles/AccountsStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kelompok4.controllers.AccountsController">
+   style="-fx-background-color: snow;" stylesheets="@../styles/AccountsStyle.css, @../styles/buttonStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kelompok4.controllers.AccountsController">
    <children>
 
       <fx:include source="sidebarUI.fxml" />
@@ -42,9 +45,42 @@
                   <HBox spacing="10.0" VBox.vgrow="NEVER">
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button fx:id="tambahButton" onAction="#toAccountsUI" prefWidth="100" styleClass="button" text="Tambah" />
-                        <Button fx:id="editButton" onAction="#toAccountsUI" prefWidth="100" styleClass="button" text="Edit" />
-                        <Button fx:id="hapusButton" onAction="#deleteRowAkun" prefWidth="100" styleClass="button" text="Hapus" />
+                        <Button fx:id="tambahButton" graphicTextGap="10.0" onAction="#toAccountsUI" prefWidth="150.0" styleClass="button" text="Tambah">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/add.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="editButton" graphicTextGap="10.0" onAction="#toAccountsUI" prefWidth="150.0" styleClass="button" text="Edit">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/edit.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="hapusButton" graphicTextGap="10.0" onAction="#deleteRowAkun" prefWidth="150.0" styleClass="button" text="Hapus">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/delete.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
                   </HBox>
       

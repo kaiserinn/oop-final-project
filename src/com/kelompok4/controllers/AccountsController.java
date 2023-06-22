@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import com.kelompok4.DB;
 import com.kelompok4.types.User;
+import com.kelompok4.types.Admin;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -118,14 +119,10 @@ public class AccountsController {
     public void tambahAkun(String username, String password, String role, int balance) throws IOException {
         int numItems = table.getItems().size();
 
-        if (username.isEmpty() || password.isEmpty() || role.isEmpty()) {
-            MessageBox.show("Mohon isi semua field", "Error");
-        } else {
-            User user = new User(numItems+1, username, password, role, balance);
-            if (user.tambahAkun()) {
-                data.add(user);
-                table.refresh();
-            }
+        Admin admin = new Admin(numItems+1, username, password);
+        if (admin.tambahAkun(role, balance)) {
+            data.add(new User(numItems+1, username, password, role, balance));
+            table.refresh();
         }
     }
 
@@ -136,8 +133,8 @@ public class AccountsController {
         }
         
         int userId = selectedUser.getDatabaseId();
-        User newUser = new User(userId, username, password, balance);
-        if (newUser.editAkun(userId)) {
+        Admin admin = new Admin(userId, username, password);
+        if (admin.editAkun(userId, balance)) {
             MessageBox.show("Berhasil mengubah akun", "Success");
             table.setItems(loadData());
         } else {
@@ -155,7 +152,8 @@ public class AccountsController {
         }
         
         int userId = selectedUser.getDatabaseId();
-        if (selectedUser.hapusAkun(userId)) {
+        Admin admin = new Admin(selectedUser.getUsername(), selectedUser.getPassword());
+        if (admin.hapusAkun(userId)) {
             MessageBox.show("Berhasil menghapus akun", "Success");
             data.remove(selectedUser);
         } else {

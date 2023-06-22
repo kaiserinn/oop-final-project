@@ -3,13 +3,15 @@ package com.kelompok4.types;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 import com.kelompok4.DB;
 
 public class User extends Account {
     private String role;
-    private String email;
     private int balance;
+    private ArrayList<Sewa> sewa = new ArrayList<Sewa>();
 
     public User(String username, String password) {
         super(0, username, password);
@@ -29,6 +31,7 @@ public class User extends Account {
         this.balance = balance;
     }
 
+    @Override
     public int getDatabaseId() {
         try {
             DB.loadJDBCDriver();
@@ -105,10 +108,9 @@ public class User extends Account {
                 e.printStackTrace();
             }
         }
-
     }
 
-    public boolean tambahAkun() {
+    public ArrayList<Sewa> getListSewa() {
         try {
             DB.loadJDBCDriver();
             DB.connect();
@@ -117,105 +119,23 @@ public class User extends Account {
         }
 
         try {
-            PreparedStatement stm = DB.prepareStatement("SELECT username FROM akun WHERE username = ?");
-            stm.setString(1, this.getUsername());
-            ResultSet resultSet = stm.executeQuery();
-
-            if (resultSet.next()) {
-                System.out.println("Username sudah terdaftar!");
-                return false;
-            }
-
-            PreparedStatement statement = DB.prepareStatement("INSERT INTO akun (username, password, role, balance) VALUES (?, ?, ?, ?)");
-            statement.setString(1, this.getUsername());
-            statement.setString(2, this.getPassword());
-            statement.setString(3, "user");
-            statement.setInt(4, this.balance);
-            statement.executeUpdate();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                DB.disconnect();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } return false;
-    }
-
-    public boolean editAkun(int id) {
-        try {
-            DB.loadJDBCDriver();
-            DB.connect();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            PreparedStatement statement = DB.prepareStatement("UPDATE akun SET username = ?, password = ?, balance = ? WHERE id = ?");
-            statement.setString(1, this.getUsername());
-            statement.setString(2, this.getPassword());
-            statement.setInt(3, this.balance);
-            statement.setInt(4, id);
-            statement.executeUpdate();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                DB.disconnect();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } return false;
-    }
-
-    public boolean hapusAkun(int id) {
-        try {
-            DB.loadJDBCDriver();
-            DB.connect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            PreparedStatement statement = DB.prepareStatement("DELETE FROM akun WHERE id = ?");
-            statement.setInt(1, id);
-            statement.executeUpdate();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                DB.disconnect();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } return false;
-    }
-
-    public boolean login() {
-        try {
-            DB.loadJDBCDriver();
-            DB.connect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            PreparedStatement statement = DB.prepareStatement("SELECT username, password, role FROM akun WHERE username = ? AND password = ?");
-            statement.setString(1, this.getUsername());
-            statement.setString(2, this.getPassword());
+            PreparedStatement statement = DB.prepareStatement("SELECT * FROM sewa WHERE id_user = ?");
+            statement.setInt(1, this.getDatabaseId());
             ResultSet resultSet = statement.executeQuery();
 
-            if (resultSet.next()) {
-                if (resultSet.getString("username").equals(this.getUsername()) && resultSet.getString("password").equals(this.getPassword())) {
-                    this.role = resultSet.getString("role");
-                    return true;
-                } else {
-                    return false;
-                }
+            int sewaId, akunId, lapanganId;
+            LocalDate tanggalSewa;
+            String sesi;
+            while (resultSet.next()) {
+                sewaId = resultSet.getInt("id");
+                tanggalSewa = resultSet.getDate("tanggal").toLocalDate();
+                sesi = resultSet.getString("sesi");
+                akunId = resultSet.getInt("id_user");
+                lapanganId = resultSet.getInt("id_lapangan");
+                this.sewa.add(new Sewa(sewaId, tanggalSewa, sesi, akunId, lapanganId));
             }
-        } catch (Exception e) {
+            return this.sewa;
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -223,23 +143,11 @@ public class User extends Account {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } return false;
+        } return this.sewa;
     }
 
     public String getRole() {
         return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public int getBalance() {

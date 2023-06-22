@@ -1,5 +1,7 @@
 package com.kelompok4.controllers;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,8 +18,8 @@ public class SidebarController {
 
     @FXML
     private void initialize() {
-        if (LoginController.loginState) {
-            if (LoginController.loginUser.getRole().equals("user")) {
+        if (Global.loginState) {
+            if (Global.loginRole.equals("user")) {
                 daftarLapangan.setVisible(false);
                 daftarLapangan.setManaged(false);
                 tambahLapangan.setVisible(false);
@@ -44,7 +46,19 @@ public class SidebarController {
     }
 
     @FXML
-    private void toDaftarLapangan() {
+    private void toHomePage() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/views/homeUI.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void toDaftarLapangan() throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../resources/views/lapanganUI.fxml"));
             Scene scene = new Scene(root);
@@ -58,7 +72,7 @@ public class SidebarController {
     @FXML
     private void toAddPage() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../resources/views/addPageUI.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/views/addLapanganPageUI.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage) rootPane.getScene().getWindow();
             stage.setScene(scene);

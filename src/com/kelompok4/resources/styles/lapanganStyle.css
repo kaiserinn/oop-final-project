@@ -19,3 +19,40 @@
     -fx-background-radius: 10px;
 }
 
+/* #tambahButton {
+    -fx-background-color: rgb(255, 99, 99);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.2, 0, 0);
+    -fx-background-radius: 10px; 
+}
+
+#tambahButton:hover {
+    -fx-background-color: rgb(255, 139, 139);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.2, 0, 0);
+    -fx-background-radius: 10px; 
+}
+
+#editButton {
+    -fx-background-color: rgb(241, 241, 3);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.2, 0, 0);
+    -fx-background-radius: 10px; 
+}
+
+#editButton:hover {
+    -fx-background-color: rgb(255, 255, 111);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.2, 0, 0);
+    -fx-background-radius: 10px; 
+}
+
+#hapusButton {
+    -fx-background-color: rgb(4, 221, 4);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.2, 0, 0);
+    -fx-background-radius: 10px; 
+}
+
+#hapusButton:hover {
+    -fx-background-color: rgb(39, 247, 39);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.2, 0, 0);
+    -fx-background-radius: 10px; 
+} */
